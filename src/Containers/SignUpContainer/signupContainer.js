@@ -4,8 +4,6 @@ import { reduxForm } from 'redux-form';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { Form } from 'reactstrap'
-
 /*Form containers */
 import InputContainer from '../FormsContainer/formInputContainer';
 
@@ -50,6 +48,7 @@ class SignUpContainer extends React.Component {
 
   onInputChange(ev, name) {
     if (name === 'email') {
+      //this.props.checkMail(ev.target.value, this.props.db.users);
       this.setState({ email: ev.target.value })
     }
     else if (name === 'password') {
@@ -127,8 +126,7 @@ SignUpContainer.propTypes = {
 }
 
 SignUpContainer.defaultProps = {
-  addUser: () => { }
-
+  addUser: () => {}
 }
 
 function mapStateToProps(state) {

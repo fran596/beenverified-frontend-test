@@ -1,4 +1,4 @@
-const Report = (emailAddresses, names, social, jobs, images) => {
+const Report = function (emailAddresses, names, social, jobs, images) {
     this.emailAddresses = emailAddresses;
     this.names = names;
     this.social = social;

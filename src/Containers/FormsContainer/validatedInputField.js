@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Input } from 'reactstrap'
 
+/**CSS Styling */
+import '../../Styles/input.css'
+
 const ValidatedInputField = ({options, input, type, meta: { touched, error, warning }}, props) =>(
   <div>
     <div>

@@ -31,6 +31,7 @@ export const getDB = () => {
       type: Action.GET_DB_REQUEST
     })
     let db = JSON.parse(localStorage.getItem('db')); 
+    //If db found
     if(db){
         dispatch({
             type: Action.GET_DB_SUCCESS,
@@ -54,3 +55,5 @@ export const getDB = () => {
     
   }
 }
+
+
