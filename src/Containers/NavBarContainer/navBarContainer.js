@@ -1,78 +1,64 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
+/**Navbar items */
 import LoggedOutNav from './loggedOutNav'
+import LoggedInNav from './loggedInNav'
 
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    } from 'reactstrap';
+
+function NavOptions(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn !== -1) {
+    return <LoggedInNav />;
+  }
+  return <LoggedOutNav />;
+}
 
 class NavBarContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-          isOpen: false
-        };
-      }
-      toggle() {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
-      }
+  constructor(props) {
+    super(props);
 
-    render(){
-        return (
-            <div>
-            <Navbar style={{backgroundColor: '#00796b'}} dark expand="md">
-              <NavbarBrand href="/">iVerify</NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
-              {/* <h1>OTRO TEXTO</h1> */}
-              <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                  <LoggedOutNav/>
-                </Nav>
-              </Collapse>
-            </Navbar>
-          </div>
-        );
-    }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  render() {
+    return (
+      <NavOptions isLoggedIn={this.props.db.currentUser} />
+    );
+  }
 }
 
 NavBarContainer.propTypes = {
-    // logout: PropTypes.func,
-    // getUser: PropTypes.func,
-    // user: PropTypes.object,
-    // history: PropTypes.object
+  db: PropTypes.object,
+}
+
+NavBarContainer.defaultProps = {
+  db: null
+}
+
+function mapStateToProps(state) {
+  return {
+    db: state.db.db
   }
-  
-  NavBarContainer.defaultProps = {
-    // logout: ()=>{},
-    // getUser: ()=>{},
-    // user: null,
-    // history: null
-  }
-  
-  function mapStateToProps(state) {
-    return {
-    //   user: state.user
-    }
-  }
-  
-  function mapDispatchToProps(dispatch) {
-    return {
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
     //   getUser: () => dispatch(getUser()),
     //   logout: (history, session) => dispatch(logout(history, session))
-    }
   }
-  
-  
-  
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarContainer));
+}
+
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarContainer));

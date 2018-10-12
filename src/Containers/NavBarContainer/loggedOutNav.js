@@ -1,13 +1,9 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { reduxForm } from 'redux-form';
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { NavItem, NavLink } from 'reactstrap';
-
-/*Form containers */
-import InputContainer from '../FormsContainer/formInputContainer';
+import { NavItem, Nav, Navbar, NavbarBrand } from 'reactstrap';
 
 /**Actions to dispatch */
 import { logIn } from '../../dbModel/Actions/Creators/actionCreators'
@@ -54,38 +50,41 @@ class LoggedOutNav extends React.Component {
 
   render() {
     return (
-      <div>
-        <NavItem>
-          <form>
-            <div className="form-row">
-              <div className="col-sm-5">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Email"
-                  onChange={(ev, name) => { this.onInputChange(ev, 'email') }}>
-                </input>
-              </div>
-              <div className="col-sm-5">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  onChange={(ev, name) => { this.onInputChange(ev, 'password') }}>
-                </input>
-              </div>
-              <div className="col-sm-2">
-                <button type="submit"
-                  className="btn btn-primary"
-                  onClick={(event) => { this.handleSubmit(event) }}
-                >
-                  Sign in
+      <Navbar style={{ backgroundColor: '#00796b' }} dark expand="md">
+        <NavbarBrand href="/">iVerify</NavbarBrand>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <form>
+              <div className="form-row">
+                <div className="col-sm-5">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Email"
+                    onChange={(ev, name) => { this.onInputChange(ev, 'email') }}>
+                  </input>
+                </div>
+                <div className="col-sm-5">
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    onChange={(ev, name) => { this.onInputChange(ev, 'password') }}>
+                  </input>
+                </div>
+                <div className="col-sm-2">
+                  <button type="submit"
+                    className="btn btn-primary"
+                    onClick={(event) => { this.handleSubmit(event) }}
+                  >
+                    Sign in
                </button>
+                </div>
               </div>
-            </div>
-          </form>
-        </NavItem>
-      </div>
+            </form>
+          </NavItem>
+        </Nav>
+      </Navbar>
     );
   }
 }
@@ -98,7 +97,7 @@ LoggedOutNav.propTypes = {
 }
 
 LoggedOutNav.defaultProps = {
-  logIn: ()=>{},
+  logIn: () => { },
   // getUser: ()=>{},
   // user: null,
   // history: null
@@ -115,7 +114,7 @@ function mapDispatchToProps(dispatch) {
   return {
     //   getUser: () => dispatch(getUser()),
     //   logout: (history, session) => dispatch(logout(history, session))
-    logIn: (user) => dispatch(logIn(user)) 
+    logIn: (user) => dispatch(logIn(user))
   }
 }
 

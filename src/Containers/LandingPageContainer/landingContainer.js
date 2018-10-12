@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 /**Container dependencies*/
-import SignUpContainer from '../SignUpContainer/signupContainer'
+import LoggedOutContainer from '../LoggedOutContainer/loggedOutContainer'
+import LoggedInContainer from '../LoggedInContainer/loggedInContainer'
 
 /**Actions to dispatch */
 import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
@@ -12,8 +13,14 @@ import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
 import '../../Styles/landing.css'
 import 'animate.css'
 
-const landingTitleTxt = "We'll do the heavy lifting for you!"
-const landingPtext = "We have access to the major databases around the country, anything you would like to verify about someone, just type their email."
+function LandingContent(props) {
+  const isLoggedIn = props.isLoggedIn.currentUser;
+  if (isLoggedIn !== -1) {
+    let users = props.isLoggedIn.users
+    return <LoggedInContainer user={users[isLoggedIn]}/>;
+  }
+  return <LoggedOutContainer />;
+}
 
 class LandingContainer extends React.Component {
 
@@ -24,17 +31,8 @@ class LandingContainer extends React.Component {
   render() {
     return (
       <div className="container-fluid h-100">
-        <div className="row h-100">
-          <div className="col-sm-6 bg-landing">
-            <div className="landing-content ">
-              <h1 className="animated fadeInUp">{landingTitleTxt}</h1>
-              <p className="animated fadeIn">{landingPtext}</p>
-            </div>
-          </div>
-          <div className="col-sm-6 ">
-            <SignUpContainer />
-          </div>
-        </div>
+        {/* <LoggedOutContainer/> */}
+        <LandingContent isLoggedIn={this.props.db}/>
       </div>
     );
   }
@@ -48,7 +46,6 @@ LandingContainer.propTypes = {
 
 LandingContainer.defaultProps = {
   db: null,
-  // history: null
 }
 
 function mapStateToProps(state) {

@@ -43,6 +43,24 @@ const dataBase = (state = DEFAULT_STATE, action) => {
                 ...state,
                 error: action.error
             }
+
+        case 'LOG_OUT_REQUEST':
+            return {
+                ...state,
+            }
+        case 'LOG_OUT_SUCCESS':
+            return {
+                ...state,
+                db: {
+                    users: [...state.db.users],
+                    currentUser: -1
+                },
+            }
+        case 'LOG_OUT_FAILURE':
+            return {
+                ...state,
+                error: action.error
+            }
         case 'GET_DB_REQUEST':
             return {
                 ...state,

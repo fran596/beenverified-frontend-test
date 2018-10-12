@@ -19,7 +19,7 @@ import signupValidator from '../FormsContainer/signupValidator'
 /**CSS Styling */
 import '../../Styles/landing.css'
 
-class SignUpContainer extends React.Component {
+class LoggedOutContent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -122,12 +122,12 @@ class SignUpContainer extends React.Component {
   }
 }
 
-SignUpContainer.propTypes = {
+LoggedOutContent.propTypes = {
   db: PropTypes.object,
   form: PropTypes.object
 }
 
-SignUpContainer.defaultProps = {
+LoggedOutContent.defaultProps = {
   addUser: () => {}
 }
 
@@ -150,4 +150,4 @@ export default reduxForm({
   validate: signupValidator,
   syncErrors: signupValidator,
   enableReinitialize: true
-})(connect(mapStateToProps, mapDispatchToProps)(SignUpContainer))
+})(connect(mapStateToProps, mapDispatchToProps)(LoggedOutContent))
