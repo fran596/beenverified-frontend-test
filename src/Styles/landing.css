@@ -1,0 +1,38 @@
+
+.bg-landing{
+    color: black;
+}
+
+.bg-landing::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('https://cdn.pixabay.com/photo/2018/05/25/09/47/blog-3428667_960_720.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: opacity(0.25);
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px)  { 
+    .bg-landing {
+        display: none;
+    }
+ }
+
+.landing-content{
+    margin: 30% 10%;
+    
+}
+
+#signup {
+    padding: 10% 5%;
+}
+
+#btn-signup {
+    padding: 1% 10%;
+}
