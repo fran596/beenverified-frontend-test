@@ -92,6 +92,7 @@ class SignUpContainer extends React.Component {
                 name="email"
                 type="text"
                 value={this.state.email}
+                placeholder=""
                 text="The name of the database you want to use for your CMS"
                 onInputChange={this.onInputChange}
               />
@@ -100,6 +101,7 @@ class SignUpContainer extends React.Component {
                 name="password"
                 type="password"
                 value={this.state.password}
+                placeholder=""
                 text="The name of the database you want to use for your CMS"
                 onInputChange={this.onInputChange}
               />

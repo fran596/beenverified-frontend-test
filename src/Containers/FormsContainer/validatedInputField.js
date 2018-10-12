@@ -12,6 +12,7 @@ const ValidatedInputField = ({options, input, type, meta: { touched, error, warn
       <Input 
         {...input}
         type={type} 
+        placeholder={options.placeholder || ''}
         value={options.defaultValue || ''} 
         onChange={(ev)=>options.onInputChange(ev,input.name)}
       /> }

@@ -10,13 +10,13 @@ export const addUser = (user) => {
         dispatch({
             type: Action.ADD_USER_REQUEST
         })
-        if(user){
+        if (user) {
             dispatch({
                 type: Action.ADD_USER_SUCCESS,
                 user: user
             })
         }
-        else{
+        else {
             dispatch({
                 type: Action.ADD_USER_FAILURE,
                 error: "Can't add user"
@@ -25,35 +25,85 @@ export const addUser = (user) => {
     }
 }
 
-export const getDB = () => {
-  return function (dispatch) {
-    dispatch({
-      type: Action.GET_DB_REQUEST
-    })
-    let db = JSON.parse(localStorage.getItem('db')); 
-    //If db found
-    if(db){
+export const logIn = (user) => {
+    return function (dispatch) {
         dispatch({
-            type: Action.GET_DB_SUCCESS,
-            db: db
+            type: Action.LOG_IN_REQUEST
         })
+        //Login user is not empty
+        if (user) {
+            //Retrieve db for user checking
+            let db = JSON.parse(localStorage.getItem('db'));
+            if (db) {
+                let users = db.users;
+                //Check if email and password match
+                let res = null;
+                for (let i = 0; i < users.length; ++i) {
+                    if (users[i].email.localeCompare(user.email) === 0
+                        && users[i].password.localeCompare(user.password) === 0) {
+                        res = users[i];
+                        break;
+                    }
+                }
+                //User found and data matches
+                if (res !== null) {
+                    dispatch({
+                        type: Action.LOG_IN_SUCCESS,
+                        user: res
+                    })
+                }
+                //User not found or data doesn't match
+                else {
+                    dispatch({
+                        type: Action.LOG_IN_FAILURE,
+                        error: "Can't login"
+                    })
+                    window.alert("Can't log in. Check that your email and password are correct");
+                }
+
+            }
+
+        }
+        //Login user is empty
+        else {
+            dispatch({
+                type: Action.LOG_IN_FAILURE,
+                error: "Can't login"
+            })
+            window.alert("Can't log in. Check that your email and password are correct");
+        }
     }
-    else{
-        //If no DB create a new one
-       db = {
-        users: [],
-        currentUser: -1
-      };
-      //Save DB to local storage
-      localStorage.setItem('db', JSON.stringify(db));
-      dispatch({
-          type: Action.GET_DB_FAILURE,
-          error: 'No database found. A new database will be created',
-          newDB: db
-      })
+}
+
+export const getDB = () => {
+    return function (dispatch) {
+        dispatch({
+            type: Action.GET_DB_REQUEST
+        })
+        let db = JSON.parse(localStorage.getItem('db'));
+        //If db found
+        if (db) {
+            dispatch({
+                type: Action.GET_DB_SUCCESS,
+                db: db
+            })
+        }
+        else {
+            //If no DB create a new one
+            db = {
+                users: [],
+                currentUser: -1
+            };
+            //Save DB to local storage
+            localStorage.setItem('db', JSON.stringify(db));
+            dispatch({
+                type: Action.GET_DB_FAILURE,
+                error: 'No database found. A new database will be created',
+                newDB: db
+            })
+        }
+
     }
-    
-  }
 }
 
 
