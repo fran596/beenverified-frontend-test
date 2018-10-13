@@ -93,7 +93,7 @@ class SearchContainer extends React.Component {
                                     />
                                 </div>
                                 <button className="btn btn-primary" 
-                                onClick={(event) => {this.handleSubmit(event)}} >search!</button>
+                                onClick={(event) => {this.handleSubmit(event)}} >search</button>
                             </form>
                         </div>
                     </div>

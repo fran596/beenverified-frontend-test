@@ -14,8 +14,19 @@ import SearchSocialRow from './searchSocialRow'
 
 class SearchResult extends React.Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.completeSubmit = this.completeSubmit.bind(this);
+    }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.completeSubmit()
+    }
+
+    completeSubmit() {
+        window.alert('File will be saved');
     }
 
     render() {
@@ -51,7 +62,9 @@ class SearchResult extends React.Component {
                                             </span>
                                         </li>
                                     </ul>
-                                    <Button>Save report</Button>
+                                    {/* <Button>Save report</Button> */}
+                                    <button className="btn btn-primary" 
+                                onClick={(event) => {this.handleSubmit(event)}} >Save report</button>
                                 </CardBody>
                             </div>
                         )
