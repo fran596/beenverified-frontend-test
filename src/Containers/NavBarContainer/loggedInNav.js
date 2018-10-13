@@ -34,7 +34,8 @@ class LoggedInNav extends React.Component {
     }
 
     handleSubmit(e) {
-        this.props.logOut();
+         this.props.logOut(this.props.history);
+        
     }
 
     render() {
@@ -83,7 +84,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        logOut: () => dispatch(logOut())
+        logOut: (history) => dispatch(logOut(history))
     }
 }
 

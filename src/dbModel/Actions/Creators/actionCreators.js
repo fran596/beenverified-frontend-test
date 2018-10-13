@@ -73,7 +73,7 @@ export const logIn = (user) => {
     }
 }
 
-export const logOut = () => {
+export const logOut = (history) => {
     return function (dispatch) {
         dispatch({
             type: Action.LOG_OUT_REQUEST
@@ -81,8 +81,15 @@ export const logOut = () => {
         let db = JSON.parse(localStorage.getItem('db'));
         //If db found
         if (db) {
+            //Update DB
             db.currentUser = -1;
             localStorage.setItem('db', JSON.stringify(db));
+            /*Redirect user to home */
+            history.push({
+                pathname: '/',
+                search: '',
+                state: {}
+            })
             dispatch({
                 type: Action.LOG_OUT_SUCCESS,
                 db: db
