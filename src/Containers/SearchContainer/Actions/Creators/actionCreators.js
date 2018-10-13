@@ -2,7 +2,7 @@
 import * as Action from '../Types/actionTypes'
 
 
-const API_URL = 'http://www.beenverified.com/hk/dd/email?email='
+const API_URL = 'https://www.beenverified.com/hk/dd/email?email='
 
 
 export const searchPerson = (email) => {
@@ -10,7 +10,11 @@ export const searchPerson = (email) => {
         dispatch({
           type: Action.SEARCH_PERSON_REQUEST
         })
-        fetch(`${API_URL}${email}`)
+        fetch(`${API_URL}${email}`,{
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          
+        })
           .then(response => response.json())
           .then(data => {
             dispatch({

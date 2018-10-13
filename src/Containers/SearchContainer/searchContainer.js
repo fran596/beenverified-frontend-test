@@ -3,11 +3,28 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux'
 
-/*Form containers */
+/*Component Dependencies */
 import InputContainer from '../FormsContainer/formInputContainer';
+import SearchResult  from './searchResult'
+
+/**Form validator */
+import searchValidator from '../FormsContainer/searchValidator'
 
 /**Actions to dispatch */
 import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
+import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators'
+
+function SearchContent(props) {
+    // console.log(props);
+    
+    const res = props.res;
+    if (Object.keys(res.report).length !== 0) {
+        console.log(res)
+      return <SearchResult res={res.report}/>;
+    }
+
+    return <div></div>
+  }
 
 class SearchContainer extends React.Component {
 
@@ -19,6 +36,8 @@ class SearchContainer extends React.Component {
             searchTxt: ''
         };
         this.onInputChange = this.onInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.completeSubmit = this.completeSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +47,27 @@ class SearchContainer extends React.Component {
     onInputChange(ev, name) {
         if (name === 'searchTxt') {
             this.setState({ searchTxt: ev.target.value })
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.completeSubmit()
+    }
+
+    completeSubmit() {
+        let values = this.props.form.values;
+        let syncErrors = this.props.form.syncErrors;
+        if (!syncErrors) {
+            this.props.searchPerson(this.state.searchTxt);
+        }
+        else {
+            if (typeof values === 'undefined') {
+                window.alert("Please complete the search field");
+            }
+            else {
+                window.alert("Please correct the errors on the search field");
+            }
         }
     }
 
@@ -49,47 +89,49 @@ class SearchContainer extends React.Component {
                                         onInputChange={this.onInputChange}
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-primary ">search!</button>
+                                <button className="btn btn-primary" 
+                                onClick={(event) => {this.handleSubmit(event)}} >search!</button>
                             </form>
                         </div>
+                        <SearchContent res={this.props.searchRes}/>
                     </div>
                 </div>
             </div>
         )
     }
-
 }
 
 
 SearchContainer.propTypes = {
     db: PropTypes.object,
-    search: PropTypes.object,
+    searchRes: PropTypes.object,
     user: PropTypes.object
 }
 
 SearchContainer.defaultProps = {
     db: null,
-    search: null,
+    searchRes: {},
     user: null
 }
 
 function mapStateToProps(state) {
     return {
         db: state.db.db,
-        search: state.search.search
+        searchRes: state.search
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         getDB: () => dispatch(getDB()),
+        searchPerson: (email) => dispatch(searchPerson(email))
     }
 }
 
 export default reduxForm({
     form: 'search',
-    // validate: signupValidator,
-    // syncErrors: signupValidator,
+    validate: searchValidator,
+    syncErrors: searchValidator,
     enableReinitialize: true
 })(connect(mapStateToProps, mapDispatchToProps)(SearchContainer));
 

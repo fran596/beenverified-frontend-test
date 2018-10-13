@@ -34,8 +34,8 @@ class LoggedInNav extends React.Component {
     }
 
     handleSubmit(e) {
-         this.props.logOut(this.props.history);
-        
+        this.props.logOut(this.props.history);
+
     }
 
     render() {
@@ -46,7 +46,10 @@ class LoggedInNav extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/components/">New Search</NavLink>
+                            <NavLink href="/">Home</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/search">New Search</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="/components/">My reports</NavLink>
