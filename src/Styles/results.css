@@ -1,0 +1,25 @@
+.results-content{
+    margin: 0 auto;
+    padding: 3% 15%;
+}
+
+.profile-img{
+    width: 10rem;
+    height: 10rem;
+}
+
+.close-txt{
+    line-height: 0.8rem;
+}
+
+.job-item{
+    margin: 2rem auto;
+}
+
+.company-txt{
+    font-weight: bold;
+}
+
+.title-txt{
+    /* line-height: normal; */
+}

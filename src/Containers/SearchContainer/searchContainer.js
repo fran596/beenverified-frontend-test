@@ -10,6 +10,9 @@ import SearchResult  from './searchResult'
 /**Form validator */
 import searchValidator from '../FormsContainer/searchValidator'
 
+/**CSS Styling*/
+import '../../Styles/results.css'
+
 /**Actions to dispatch */
 import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
 import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators'
@@ -73,7 +76,7 @@ class SearchContainer extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid h-100">
+            <div className="container-fluid">
                 <div className="row h-100 d-flex align-items-center">
                     <div className="col-sm-10 offset-sm-1 text-center">
                         <h1 className="display-3">Search people</h1>
@@ -93,8 +96,12 @@ class SearchContainer extends React.Component {
                                 onClick={(event) => {this.handleSubmit(event)}} >search!</button>
                             </form>
                         </div>
-                        <SearchContent res={this.props.searchRes}/>
                     </div>
+                </div>
+                <div className="row results-content">
+                <div className="col">
+                <SearchContent res={this.props.searchRes}/>
+                </div>
                 </div>
             </div>
         )
