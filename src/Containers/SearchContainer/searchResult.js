@@ -10,6 +10,7 @@ import {
 import SearchNamesRow from './searchNamesRow'
 import SearchEmailsRow from './searchEmailsRow'
 import SearchJobsRow from './searchJobsRow'
+import SearchSocialRow from './searchSocialRow'
 
 class SearchResult extends React.Component {
 
@@ -42,6 +43,11 @@ class SearchResult extends React.Component {
                                         <li className="list-group-item">
                                             <span>
                                                 <SearchJobsRow jobs={this.props.res.jobs}/>
+                                            </span>
+                                        </li>
+                                        <li className="list-group-item">
+                                            <span>
+                                                <SearchSocialRow social={this.props.res.social}/>
                                             </span>
                                         </li>
                                     </ul>

@@ -8,31 +8,21 @@ const searchJobsRow = (props) => (
                     (<div></div>)
                 )
                     : (
-                        props.jobs.map((item, index) => {
-                            if (index === 0) {
-                                return (<div>
-                                    <h4>Jobs</h4>
-                                    <div key={index} className="job-item" >
-                                        <div className="close-txt">
-                                            <p className="company-txt">{item.company}</p>
-                                            <p className="title-txt">{item.title}</p>
+                        <div >
+                            <h4>Jobs</h4>
+                            {
+                                props.jobs.map((item, index) => {
+                                    return (
+                                        <div key={index} className="job-item" >
+                                            <div className="close-txt">
+                                                <p className="company-txt">{item.company}</p>
+                                                <p className="title-txt">{item.title}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                )
+                                    )
+                                })
                             }
-                            else {
-                                return (
-                                    <div key={index} className="job-item" >
-                                        <div className="close-txt">
-                                            <p className="company-txt">{item.company}</p>
-                                            <p className="title-txt">{item.title}</p>
-                                        </div>
-                                    </div>
-                                )
-                            }
-
-                        })
+                        </div>
                     )
             }
         </div>
