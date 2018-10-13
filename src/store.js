@@ -6,6 +6,7 @@ import { createLogger } from 'redux-logger'
 
 /*Reducer imports */
 import DatabaseReducer from './dbModel/dbReducer'
+import SearchReducer from './Containers/SearchContainer/searchReducer'
 
 const logger = createLogger({
     collapsed: true,
@@ -15,6 +16,7 @@ const logger = createLogger({
 
 var reducer = combineReducers({
     db: DatabaseReducer,
+    search: SearchReducer,
     form: formReducer,
 })
 

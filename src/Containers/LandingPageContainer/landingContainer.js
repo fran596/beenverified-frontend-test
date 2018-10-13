@@ -31,7 +31,6 @@ class LandingContainer extends React.Component {
   render() {
     return (
       <div className="container-fluid h-100">
-        {/* <LoggedOutContainer/> */}
         <LandingContent isLoggedIn={this.props.db}/>
       </div>
     );

@@ -4,7 +4,8 @@ const DEFAULT_STATE = {
     db: {
         users: [],
         currentUser: -1
-    }
+    },
+    loading: false
 }
 
 const dataBase = (state = DEFAULT_STATE, action) => {
@@ -12,6 +13,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
         case 'ADD_USER_REQUEST':
             return {
                 ...state,
+                loading: false
             }
         case 'ADD_USER_SUCCESS':
             return {
@@ -20,6 +22,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
                     users: [...state.db.users, { ...action.user }],
                     currentUser: action.user.index
                 },
+                loading: true
             }
         case 'ADD_USER_FAILURE':
             return {
@@ -29,6 +32,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
         case 'LOG_IN_REQUEST':
             return {
                 ...state,
+                loading: false
             }
         case 'LOG_IN_SUCCESS':
             return {
@@ -37,6 +41,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
                     users: [...state.db.users],
                     currentUser: action.user.index
                 },
+                loading: true
             }
         case 'LOG_IN_FAILURE':
             return {
@@ -47,6 +52,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
         case 'LOG_OUT_REQUEST':
             return {
                 ...state,
+                loading: false
             }
         case 'LOG_OUT_SUCCESS':
             return {
@@ -55,6 +61,7 @@ const dataBase = (state = DEFAULT_STATE, action) => {
                     users: [...state.db.users],
                     currentUser: -1
                 },
+                loading: true
             }
         case 'LOG_OUT_FAILURE':
             return {
@@ -64,19 +71,21 @@ const dataBase = (state = DEFAULT_STATE, action) => {
         case 'GET_DB_REQUEST':
             return {
                 ...state,
+                loading: false
             }
 
         case 'GET_DB_SUCCESS':
             return {
                 ...state,
-                db: action.db
+                db: action.db,
+                loading: true
             }
 
         case 'GET_DB_FAILURE':
             return {
                 ...state,
                 error: action.error,
-                db: action.newDB
+                db: action.newDB,
             }
         default:
             return state

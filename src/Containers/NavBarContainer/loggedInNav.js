@@ -45,7 +45,10 @@ class LoggedInNav extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
+                            <NavLink href="/components/">New Search</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/components/">My reports</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
@@ -66,29 +69,20 @@ class LoggedInNav extends React.Component {
 
 LoggedInNav.propTypes = {
     logout: PropTypes.func,
-    // getUser: PropTypes.func,
-    // user: PropTypes.object,
-    // history: PropTypes.object
 }
 
 LoggedInNav.defaultProps = {
     logOut: () => { },
-    // getUser: ()=>{},
-    // user: null,
-    // history: null
 }
 
 function mapStateToProps(state) {
     return {
-        //   user: state.user
         form: state.form.signin
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        //   getUser: () => dispatch(getUser()),
-        //   logout: (history, session) => dispatch(logout(history, session))
         logOut: () => dispatch(logOut())
     }
 }

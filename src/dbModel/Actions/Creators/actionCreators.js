@@ -1,10 +1,6 @@
 /*Action types */
 import * as Action from '../Types/actionTypes'
 
-
-// const API_URL = 'http://localhost:8081/api/pages'
-
-
 export const addUser = (user) => {
     return function (dispatch) {
         dispatch({

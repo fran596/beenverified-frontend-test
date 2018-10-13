@@ -24,7 +24,6 @@ class LoggedOutContainer extends React.Component {
             </div>
           </div>
           <div className="col-sm-6 ">
-            {/* <SignUpContainer /> */}
             <LoggedOutContent/>
           </div>
         </div>

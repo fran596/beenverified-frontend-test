@@ -6,6 +6,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 /**Containers for routing */
 import NavBarContainer from './Containers/NavBarContainer/navBarContainer'
 import LandingPageContainer from './Containers/LandingPageContainer/landingContainer'
+import RouteContainer from './Routes/routeContainer'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <NavBarContainer/>
         <Switch>
           <Route exact path="/" component={LandingPageContainer} />
+          <RouteContainer/>
         </Switch>
       </div>
       </BrowserRouter>

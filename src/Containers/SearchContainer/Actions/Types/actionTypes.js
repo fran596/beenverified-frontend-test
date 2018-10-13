@@ -1,0 +1,5 @@
+/*Add new user action types */
+export const SEARCH_PERSON_REQUEST = 'SEARCH_PERSON_REQUEST';
+export const SEARCH_PERSON_SUCCESS = 'SEARCH_PERSON_SUCCESS';
+export const SEARCH_PERSON_FAILURE = 'SEARCH_PERSON_FAILURE';
+
