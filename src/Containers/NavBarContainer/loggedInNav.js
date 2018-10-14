@@ -52,7 +52,7 @@ class LoggedInNav extends React.Component {
                             <NavLink href="/search">New Search</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/components/">My reports</NavLink>
+                            <NavLink href="/reports">My reports</NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

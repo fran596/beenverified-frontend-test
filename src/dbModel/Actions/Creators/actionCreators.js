@@ -104,6 +104,34 @@ export const logOut = (history) => {
     }
 }
 
+export const addReport = (report, userID) => {
+    return function (dispatch) {
+        dispatch({
+            type: Action.ADD_REPORT_REQUEST
+        })
+        let db = JSON.parse(localStorage.getItem('db'));
+        //If db found
+        if (db) {
+            //Add report to DB
+            db.users[userID].reports.push(report);
+            //Save DB
+            localStorage.setItem('db', JSON.stringify(db));
+            dispatch({
+                type: Action.ADD_REPORT_SUCCESS,
+                db: db
+            })
+        }
+        else {
+            
+            dispatch({
+                type: Action.ADD_REPORT_FAILURE,
+                error: "No database found. The report couldn't be added.",
+            })
+        }
+
+    }
+}
+
 export const getDB = () => {
     return function (dispatch) {
         dispatch({

@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import {CardBody} from 'reactstrap';
+
+/**Actions to dispatch */
+import { addReport } from '../../dbModel/Actions/Creators/actionCreators'
 
 import SearchNamesRow from './searchNamesRow'
 import SearchEmailsRow from './searchEmailsRow'
@@ -26,6 +26,7 @@ class SearchResult extends React.Component {
     }
 
     completeSubmit() {
+        this.props.addReport(this.props.res, this.props.db.currentUser);
         window.alert('File will be saved');
     }
 
@@ -96,7 +97,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        // getDB: () => dispatch(getDB()),
+        addReport: (report, userID) => dispatch(addReport(report, userID))
     }
 }
 

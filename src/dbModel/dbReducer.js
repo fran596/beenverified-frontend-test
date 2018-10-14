@@ -34,6 +34,24 @@ const dataBase = (state = DEFAULT_STATE, action) => {
                 ...state,
                 loading: false
             }
+        case 'ADD_REPORT_REQUEST':
+            return {
+                ...state,
+                loading: false
+            }
+
+        case 'ADD_REPORT_SUCCESS':
+            return {
+                ...state,
+                db: action.db,
+                loading: true
+            }
+
+        case 'ADD_REPORT_FAILURE':
+            return {
+                ...state,
+                error: action.error,
+            }
         case 'LOG_IN_SUCCESS':
             return {
                 ...state,

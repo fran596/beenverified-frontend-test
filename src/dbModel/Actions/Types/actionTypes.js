@@ -13,7 +13,12 @@ export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 
-/*Get db action types */
+/*Add report to user */
+export const ADD_REPORT_REQUEST = 'ADD_REPORT_REQUEST';
+export const ADD_REPORT_SUCCESS = 'ADD_REPORT_SUCCESS';
+export const ADD_REPORT_FAILURE = 'ADD_REPORT_FAILURE';
+
+/*Get db action */
 export const GET_DB_REQUEST = 'GET_DB_REQUEST';
 export const GET_DB_SUCCESS = 'GET_DB_SUCCESS';
 export const GET_DB_FAILURE = 'GET_DB_FAILURE';
