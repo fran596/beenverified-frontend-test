@@ -68,7 +68,7 @@ class LoggedOutContent extends React.Component {
     let syncErrors = this.props.form.syncErrors;
     /*If no errors of validation */
     if (!syncErrors) {
-      let user = new User(this.state.email, this.state.password, [], this.props.db.users.length);
+      let user = new User(this.state.email, this.state.password, [], this.props.db.users.length, []);
       this.props.addUser(user);
       console.log(user);
     }

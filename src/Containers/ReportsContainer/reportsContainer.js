@@ -24,6 +24,19 @@ class ReportsContainer extends React.Component {
     handleReport(ev, id) {
         ev.preventDefault();
         let report = this.props.db.users[this.props.db.currentUser].reports[id]
+
+        //Retrieve db for log user activity
+        let db = JSON.parse(localStorage.getItem('db'));
+        let date = new Date();
+        let message = `Viewed report of ${report.names[0].full} at ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        db.users[db.currentUser].activity.splice(0,0,message);
+        //Limit activity to 5 items
+        while(db.users[db.currentUser].activity.length > 5){
+          db.users[db.currentUser].activity.pop()
+        }
+        //Save DB
+        localStorage.setItem('db', JSON.stringify(db));
+
         //Redirect user to report that wants to view
         this.props.history.push({
             pathname: '/reports/view',

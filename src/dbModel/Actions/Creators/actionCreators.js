@@ -10,18 +10,18 @@ export const addUser = (user) => {
             console.log(user)
             let db = JSON.parse(localStorage.getItem('db'));
             if (!db) {
-                    //If no DB create a new one
-                    db = {
-                        users: [],
-                        currentUser: -1
-                    };
-                    //Save DB to local storage
-                    localStorage.setItem('db', JSON.stringify(db));
-                    dispatch({
-                        type: Action.GET_DB_FAILURE,
-                        error: 'No database found. A new database will be created',
-                        newDB: db
-                    })
+                //If no DB create a new one
+                db = {
+                    users: [],
+                    currentUser: -1
+                };
+                //Save DB to local storage
+                localStorage.setItem('db', JSON.stringify(db));
+                dispatch({
+                    type: Action.GET_DB_FAILURE,
+                    error: 'No database found. A new database will be created',
+                    newDB: db
+                })
             }
             //Add user to DB
             db.users.push(user);
@@ -135,6 +135,14 @@ export const addReport = (report, userID) => {
         if (db) {
             //Add report to DB
             db.users[userID].reports.push(report);
+            //Log user activity
+            let date = new Date();
+            let message = `Saved report of ${report.names[0].full} at ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+            db.users[db.currentUser].activity.splice(0,0,message);
+            //Limit activity to 5 items
+            while (db.users[db.currentUser].activity.length > 5) {
+                db.users[db.currentUser].activity.pop();
+            }
             //Save DB
             localStorage.setItem('db', JSON.stringify(db));
             dispatch({
