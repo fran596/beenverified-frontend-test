@@ -23,7 +23,7 @@ var reducer = combineReducers({
 const store = createStore(reducer, composeWithDevTools(
     applyMiddleware(
         ReduxThunk,
-        logger,
+        // logger,
     ),
 ))
 
