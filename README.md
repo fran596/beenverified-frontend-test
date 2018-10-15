@@ -30,7 +30,7 @@ npm start
 
 * **Francisco Arroyo** 
 
-## Acknowledgments
+## Other
 
 * The project does not have a proper back end. It uses the browser's local storage for the database
 * All routes are protected, meaning that a logged out user cannot see anything besides the log in screen.
