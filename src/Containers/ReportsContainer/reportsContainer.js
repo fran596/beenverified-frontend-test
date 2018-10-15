@@ -21,8 +21,14 @@ class ReportsContainer extends React.Component {
 
     handleReport(ev, id) {
         ev.preventDefault();
-        window.alert('Funciona');
-        console.log(id);
+        // window.alert('Funciona');
+        let report = this.props.db.users[this.props.db.currentUser].reports[id]
+        // console.log(id);
+        this.props.history.push({
+            pathname: '/reports/view',
+            search: '',
+            state: {report:report}
+          })
     }
 
     render() {
@@ -73,10 +79,12 @@ class ReportsContainer extends React.Component {
 
 ReportsContainer.propTypes = {
     db: PropTypes.object,
+    history: PropTypes.object
 }
 
 ReportsContainer.defaultProps = {
     db: {},
+    history: null
 }
 
 function mapStateToProps(state) {

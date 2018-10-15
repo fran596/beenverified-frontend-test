@@ -18,12 +18,10 @@ import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
 import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators'
 
 function SearchContent(props) {
-    // console.log(props);
 
     const res = props.res;
     if (Object.keys(res.report).length !== 0) {
-        console.log(res)
-        return <SearchResult res={res.report} />;
+        return <SearchResult res={res.report} type={props.type} />;
     }
 
     return <div></div>
@@ -106,7 +104,7 @@ class SearchContainer extends React.Component {
                 <div className="row results-content">
                     <div className="col">
 
-                        <SearchContent res={this.props.searchRes} />
+                        <SearchContent res={this.props.searchRes} type={"search"} />
                     </div>
                 </div>
             </div>
