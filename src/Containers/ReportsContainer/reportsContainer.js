@@ -27,7 +27,7 @@ class ReportsContainer extends React.Component {
         this.props.history.push({
             pathname: '/reports/view',
             search: '',
-            state: {report:report}
+            state: {report:report, id:id}
           })
     }
 

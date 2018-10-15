@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 /*Component Dependencies */
 import SearchResult from '../SearchContainer/searchResult'
 
+/*Actions to dispatch */
+import {deleteReport} from '../../dbModel/Actions/Creators/actionCreators'
 
 
 class ReportsContent extends React.Component {
@@ -14,43 +16,26 @@ class ReportsContent extends React.Component {
 
         this.state = {
             report: this.props.location.state.report,
+            id: this.props.location.state.id
         };
-        this.onInputChange = this.onInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.completeSubmit = this.completeSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.completeDelete = this.completeDelete.bind(this);
 
     }
 
     componentDidMount() {
         this.setState({report: this.props.location.state.report})
+        this.setState({id: this.props.location.state.id})
     }
 
-    onInputChange(ev, name) {
-        if (name === 'searchTxt') {
-            this.setState({ searchTxt: ev.target.value })
-        }
-    }
-
-    handleSubmit(e) {
+    handleDelete(e) {
         e.preventDefault();
-        this.completeSubmit()
+        this.completeDelete()
     }
 
-    completeSubmit() {
-        let values = this.props.form.values;
-        let syncErrors = this.props.form.syncErrors;
-        console.log(this.state.searchTxt)
-        if (!syncErrors) {
-            this.props.searchPerson(this.state.searchTxt);
-        }
-        else {
-            if (typeof values === 'undefined') {
-                window.alert("Please complete the search field");
-            }
-            else {
-                window.alert("Please correct the errors on the search field");
-            }
-        }
+    completeDelete() {
+        window.alert('will be deleted');
+        this.props.deleteReport(this.props.history, this.state.id);
     }
 
     render() {
@@ -64,7 +49,7 @@ class ReportsContent extends React.Component {
                 </div>
                 <div className="row results-content">
                     <div className="col">
-                    <SearchResult res={this.state.report} type={"report"}/>
+                    <SearchResult res={this.state.report} type={"report"} onDelete={this.handleDelete}/>
                     </div>
                 </div>
             </div>
@@ -77,14 +62,16 @@ ReportsContent.propTypes = {
     db: PropTypes.object,
     searchRes: PropTypes.object,
     user: PropTypes.object,
-    location: PropTypes.object
+    location: PropTypes.object,
+    history: PropTypes.object
 }
 
 ReportsContent.defaultProps = {
     db: null,
     searchRes: {},
     user: null,
-    location: null
+    location: null,
+    history: null
 }
 
 function mapStateToProps(state) {
@@ -93,7 +80,12 @@ function mapStateToProps(state) {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        deleteReport: (history, id) => dispatch(deleteReport(history, id))
+    }
+}
 
 
 
-export default connect(mapStateToProps)(ReportsContent);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportsContent);

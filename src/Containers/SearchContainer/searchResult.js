@@ -47,9 +47,17 @@ class SearchResult extends React.Component {
                                         <SearchJobsRow jobs={this.props.res.jobs} />
                                         <SearchSocialRow social={this.props.res.social} />
                                     </ul>
-                                    <button className="btn btn-primary"
-                                        onClick={(event) => { this.handleSubmit(event) }} >Save report</button>
+                                  
                                 </CardBody>
+                                {
+                                    (this.props.type.localeCompare("search") === 0) ?(
+                                         (<button className="btn btn-primary"
+                                        onClick={(event) => { this.handleSubmit(event) }} >Save report</button>)
+                                    ):( <button className="btn btn-danger"
+                                    onClick={(event) => { this.props.onDelete(event) }}
+                                    >Delete report</button>)
+                                }
+                                
                             </div>
                         )
                 }
