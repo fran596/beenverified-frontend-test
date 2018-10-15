@@ -1,3 +1,5 @@
+/**Names & picture content of search result */
+
 import React from 'react'
 
 const searchNamesRow = (props) => (
@@ -6,9 +8,11 @@ const searchNamesRow = (props) => (
             <div className="col-md-4 text-center">
                 <img className="profile-img"
                     src={
+                        //If person doesn't have a picture
                         (!Array.isArray(props.imgs) || !props.imgs.length) ? (
                             "http://getdrawings.com/img/unknown-person-silhouette-32.png"
                         )
+                        //Person has a picture
                             : (
                                 props.imgs[0].url
                             )

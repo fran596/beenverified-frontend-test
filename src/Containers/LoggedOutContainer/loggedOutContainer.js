@@ -1,3 +1,4 @@
+/**Container for logged out users in home path */
 
 import React from 'react'
 

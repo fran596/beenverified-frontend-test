@@ -20,7 +20,6 @@ const FormInputContainer = (props) => (
                     style: props.style,
                     onInputChange: props.onInputChange
                 }}
-                // className="form-control"
             />
         </FormGroup>
     </div>

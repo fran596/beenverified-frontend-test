@@ -1,3 +1,4 @@
+/**Component for the Home path */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -15,10 +16,12 @@ import 'animate.css'
 
 function LandingContent(props) {
   const isLoggedIn = props.isLoggedIn.currentUser;
+  //If user is logged in show logged in view
   if (isLoggedIn !== -1) {
     let users = props.isLoggedIn.users
     return <LoggedInContainer user={users[isLoggedIn]}/>;
   }
+  //Show logged out view
   return <LoggedOutContainer />;
 }
 

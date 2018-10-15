@@ -1,3 +1,5 @@
+/**Navbar container */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -10,6 +12,7 @@ import LoggedInNav from './loggedInNav'
 
 function NavOptions(props) {
   const isLoggedIn = props.isLoggedIn;
+  //If user is logged in show logged in navbar
   if (isLoggedIn !== -1) {
     return <LoggedInNav />;
   }
@@ -52,13 +55,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    //   getUser: () => dispatch(getUser()),
-    //   logout: (history, session) => dispatch(logout(history, session))
-  }
-}
-
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarContainer));
+export default withRouter(connect(mapStateToProps)(NavBarContainer));

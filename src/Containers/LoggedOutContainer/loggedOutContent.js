@@ -1,3 +1,4 @@
+/**Content showed for loggedout users */
 
 import React from 'react'
 import { reduxForm } from 'redux-form';
@@ -65,6 +66,7 @@ class LoggedOutContent extends React.Component {
   completeSubmit(){
     let values = this.props.form.values;
     let syncErrors = this.props.form.syncErrors;
+    /*If no errors of validation */
     if (!syncErrors) {
       let user = new User(this.state.email, this.state.password, [], this.props.db.users.length);
       this.props.addUser(user);
@@ -107,10 +109,9 @@ class LoggedOutContent extends React.Component {
                 onInputChange={this.onInputChange}
                 onKeyPress={()=>{}}
               />
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-right">
                 <button
                   className="btn btn-primary"
-                  id="btn-signup"
                   onClick={(event) => {this.handleSubmit(event)}}
                 >
                   Sign up

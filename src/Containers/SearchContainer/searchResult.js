@@ -1,12 +1,14 @@
+/**Content of a person's search */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
-import { CardBody } from 'reactstrap';
+import { CardBody, Alert } from 'reactstrap';
 
 /**Actions to dispatch */
 import { addReport } from '../../dbModel/Actions/Creators/actionCreators'
 
+/**Component dependencies */
 import SearchNamesRow from './searchNamesRow'
 import SearchEmailsRow from './searchEmailsRow'
 import SearchJobsRow from './searchJobsRow'
@@ -16,8 +18,16 @@ class SearchResult extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            visible: false
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.completeSubmit = this.completeSubmit.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
+    }
+
+    onDismiss() {
+        this.setState({ visible: false });
     }
 
     handleSubmit(e) {
@@ -26,18 +36,24 @@ class SearchResult extends React.Component {
     }
 
     completeSubmit() {
+        this.setState({ visible: true });
         this.props.addReport(this.props.res, this.props.db.currentUser);
-        // window.alert('File will be saved');
+
     }
 
     render() {
         return (
             <div className="justify-content-right">
+                <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+                    Report saved
+                </Alert>
                 <h4>Results:</h4>
                 {
+                    //If nobody was found show message
                     (!Array.isArray(this.props.res.names) || !this.props.res.names.length) ? (
                         <p>Person not found</p>
                     )
+                    //Person was found
                         : (
                             <div className="card" style={{ width: '100%' }} >
                                 <CardBody>
@@ -47,25 +63,23 @@ class SearchResult extends React.Component {
                                         <SearchJobsRow jobs={this.props.res.jobs} />
                                         <SearchSocialRow social={this.props.res.social} />
                                     </ul>
-                                  
+
                                 </CardBody>
                                 {
-                                    (this.props.type.localeCompare("search") === 0) ?(
-                                         (<button className="btn btn-primary"
-                                        onClick={(event) => { this.handleSubmit(event) }} >Save report</button>)
-                                    ):( <button className="btn btn-danger"
-                                    onClick={(event) => { this.props.onDelete(event) }}
+                                    (this.props.type.localeCompare("search") === 0) ? (
+                                        (<button className="btn btn-primary"
+                                            onClick={(event) => { this.handleSubmit(event) }} >Save report</button>)
+                                    ) : (<button className="btn btn-danger"
+                                        onClick={(event) => { this.props.onDelete(event) }}
                                     >Delete report</button>)
                                 }
-                                
+
                             </div>
                         )
                 }
             </div>
         );
     }
-
-
 }
 
 SearchResult.propTypes = {
@@ -89,7 +103,5 @@ function mapDispatchToProps(dispatch) {
         addReport: (report, userID) => dispatch(addReport(report, userID))
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

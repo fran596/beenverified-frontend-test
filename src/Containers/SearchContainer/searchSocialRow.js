@@ -1,4 +1,8 @@
+/**Social network's content of search result */
+
 import React from 'react'
+
+/*Images dependencies */
 import linkedinImg from '../../Img/linkedin.png'
 import pageImg from '../../Img/page.png'
 import facebookImg from '../../Img/facebook.png'
@@ -8,9 +12,11 @@ const searchSocialRow = (props) => (
     <div className="row ">
         <div className="col">
             {
+                //If person doesn't have social networks
                 (!Array.isArray(props.social) || !props.social.length) ? (
                     (<div></div>)
                 )
+                //Person has social networks
                     : (
                         <li className="list-group-item">
                             <h4>Social media</h4>

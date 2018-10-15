@@ -1,3 +1,5 @@
+/**Home page component for logged in users */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -8,13 +10,16 @@ class LoggedInContainer extends React.Component {
         super(props);
 
         this.state = {
-          user: undefined
+          user: undefined,
+          visible: true
         };
+       
     }
 
     componentDidMount(){
         this.setState({user: this.props.user});
     }
+
 
   render() {
     return (
@@ -23,7 +28,7 @@ class LoggedInContainer extends React.Component {
             <h3>Welcome back {this.props.user.email} </h3>
           </div>
           <div className="col-sm-6 ">
-            
+       
           </div>
         </div>
     );
@@ -46,13 +51,6 @@ LoggedInContainer.propTypes = {
     }
   }
   
-  function mapDispatchToProps(dispatch) {
-    return {
-    //   getDB: () => dispatch(getDB()),
-    }
-  }
   
-  
-  
-export default connect(mapStateToProps, mapDispatchToProps)(LoggedInContainer);
+export default connect(mapStateToProps)(LoggedInContainer);
 

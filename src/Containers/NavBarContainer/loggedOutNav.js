@@ -1,3 +1,5 @@
+/**Nav bar component for logged out users */
+
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -39,12 +41,11 @@ class LoggedOutNav extends React.Component {
   }
 
   completeSubmit() {
-    //some code
-    // console.log([this.state.email, this.state.password])
     let user = {
       email: this.state.email,
       password: this.state.password
     };
+    //Try to log in user
     this.props.logIn(user);
   }
 
@@ -91,29 +92,20 @@ class LoggedOutNav extends React.Component {
 
 LoggedOutNav.propTypes = {
   logout: PropTypes.func,
-  // getUser: PropTypes.func,
-  // user: PropTypes.object,
-  // history: PropTypes.object
 }
 
 LoggedOutNav.defaultProps = {
   logIn: () => { },
-  // getUser: ()=>{},
-  // user: null,
-  // history: null
 }
 
 function mapStateToProps(state) {
   return {
-    //   user: state.user
     form: state.form.signin
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    //   getUser: () => dispatch(getUser()),
-    //   logout: (history, session) => dispatch(logout(history, session))
     logIn: (user) => dispatch(logIn(user))
   }
 }

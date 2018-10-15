@@ -1,4 +1,4 @@
-/*Action types */
+/*Action types for DB*/
 import * as Action from '../Types/actionTypes'
 
 export const addUser = (user) => {
@@ -23,6 +23,7 @@ export const addUser = (user) => {
                         newDB: db
                     })
             }
+            //Add user to DB
             db.users.push(user);
             db.currentUser = user.index;
             //Save DB
@@ -101,7 +102,7 @@ export const logOut = (history) => {
         let db = JSON.parse(localStorage.getItem('db'));
         //If db found
         if (db) {
-            //Update DB
+            //Log out user in DB
             db.currentUser = -1;
             localStorage.setItem('db', JSON.stringify(db));
             /*Redirect user to home */

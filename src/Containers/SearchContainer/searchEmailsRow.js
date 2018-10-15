@@ -1,3 +1,5 @@
+/**Email addresses content of search result */
+
 import React from 'react'
 
 const searchEmailsRow = (props) => (

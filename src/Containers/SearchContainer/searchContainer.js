@@ -1,3 +1,5 @@
+/**Container for searching people */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form';
@@ -18,12 +20,11 @@ import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
 import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators'
 
 function SearchContent(props) {
-
     const res = props.res;
+    //If search was succesulf show result
     if (Object.keys(res.report).length !== 0) {
         return <SearchResult res={res.report} type={props.type} />;
     }
-
     return <div></div>
 }
 
@@ -60,7 +61,7 @@ class SearchContainer extends React.Component {
     completeSubmit() {
         let values = this.props.form.values;
         let syncErrors = this.props.form.syncErrors;
-        console.log(this.state.searchTxt)
+        /*If no errors of validation */
         if (!syncErrors) {
             this.props.searchPerson(this.state.searchTxt);
         }
@@ -103,7 +104,6 @@ class SearchContainer extends React.Component {
                 </div>
                 <div className="row results-content">
                     <div className="col">
-
                         <SearchContent res={this.props.searchRes} type={"search"} />
                     </div>
                 </div>

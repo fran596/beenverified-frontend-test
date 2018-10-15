@@ -1,3 +1,5 @@
+/**Content of a report */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -34,7 +36,6 @@ class ReportsContent extends React.Component {
     }
 
     completeDelete() {
-        window.alert('will be deleted');
         this.props.deleteReport(this.props.history, this.state.id);
     }
 
@@ -85,7 +86,5 @@ function mapDispatchToProps(dispatch) {
         deleteReport: (history, id) => dispatch(deleteReport(history, id))
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportsContent);

@@ -8,6 +8,7 @@ import '../../Styles/input.css'
 const ValidatedInputField = ({options, input, type, meta: { touched, error, warning }}, props) =>(
   <div>
     <div>
+      {/**Input component with options passed */}
       {options && 
       <Input 
         {...input}
@@ -17,8 +18,10 @@ const ValidatedInputField = ({options, input, type, meta: { touched, error, warn
         value={options.defaultValue || ''} 
         onChange={(ev)=>options.onInputChange(ev,input.name)}
       /> }
+       {/**Input component without options passed */}
       {!options && <Input {...input} type={type}  />}
     </div>
+     {/**Show errors in case the validation didn't match */}
     {touched &&
         error && type.localeCompare("searchTxt")!== 0 ? (
           <div className="error-placeholder">

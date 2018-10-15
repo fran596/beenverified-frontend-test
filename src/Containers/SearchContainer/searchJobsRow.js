@@ -1,3 +1,5 @@
+/**Jobs content of search result */
+
 import React from 'react'
 
 const searchJobsRow = (props) => (

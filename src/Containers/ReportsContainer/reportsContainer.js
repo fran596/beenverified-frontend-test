@@ -1,3 +1,5 @@
+/**Container for the reports of a user */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -21,9 +23,8 @@ class ReportsContainer extends React.Component {
 
     handleReport(ev, id) {
         ev.preventDefault();
-        // window.alert('Funciona');
         let report = this.props.db.users[this.props.db.currentUser].reports[id]
-        // console.log(id);
+        //Redirect user to report that wants to view
         this.props.history.push({
             pathname: '/reports/view',
             search: '',
@@ -38,6 +39,7 @@ class ReportsContainer extends React.Component {
                     <div className="col ">
                         <h1 className="display-3 text-center">My reports</h1>
                         {
+                            //If there are not reports show message
                             (!Array.isArray(this.props.db.users[this.props.db.currentUser].reports) || !this.props.db.users[this.props.db.currentUser].reports.length) ? (
                                 (<div className="text-center"><h6>Start searching to generate a report</h6></div>)
                             ) : (<div></div>)

@@ -1,3 +1,5 @@
+/**Nav bar component for logged in users */
+
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
