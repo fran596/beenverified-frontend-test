@@ -11,6 +11,7 @@ const ValidatedInputField = ({options, input, type, meta: { touched, error, warn
       {options && 
       <Input 
         {...input}
+        style={options.style || {}}
         type={type} 
         placeholder={options.placeholder || ''}
         value={options.defaultValue || ''} 
@@ -19,10 +20,13 @@ const ValidatedInputField = ({options, input, type, meta: { touched, error, warn
       {!options && <Input {...input} type={type}  />}
     </div>
     {touched &&
-        error &&
-        <div className="error-placeholder">
+        error && type.localeCompare("searchTxt")!== 0 ? (
+          <div className="error-placeholder">
           {error}
-        </div>}
+        </div>
+        ) : (<div></div>)
+    }
+        
   </div>
   )
 

@@ -8,7 +8,7 @@ const searchJobsRow = (props) => (
                     (<div></div>)
                 )
                     : (
-                        <div >
+                        <li className="list-group-item" >
                             <h4>Jobs</h4>
                             {
                                 props.jobs.map((item, index) => {
@@ -22,7 +22,7 @@ const searchJobsRow = (props) => (
                                     )
                                 })
                             }
-                        </div>
+                        </li>
                     )
             }
         </div>

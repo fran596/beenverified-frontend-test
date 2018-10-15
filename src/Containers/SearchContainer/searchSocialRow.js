@@ -12,7 +12,7 @@ const searchSocialRow = (props) => (
                     (<div></div>)
                 )
                     : (
-                        <div>
+                        <li className="list-group-item">
                             <h4>Social media</h4>
                             <div className="row close-txt">
                                 {props.social.map((item, index) => {
@@ -35,7 +35,7 @@ const searchSocialRow = (props) => (
                                     )
                                 })}
                             </div>
-                        </div>
+                        </li>
                     )
             }
         </div>

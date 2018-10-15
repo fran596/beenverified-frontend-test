@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 /*Component Dependencies */
 import InputContainer from '../FormsContainer/formInputContainer';
-import SearchResult  from './searchResult'
+import SearchResult from './searchResult'
 
 /**Form validator */
 import searchValidator from '../FormsContainer/searchValidator'
@@ -19,15 +19,15 @@ import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators
 
 function SearchContent(props) {
     // console.log(props);
-    
+
     const res = props.res;
     if (Object.keys(res.report).length !== 0) {
         console.log(res)
-      return <SearchResult res={res.report}/>;
+        return <SearchResult res={res.report} />;
     }
 
     return <div></div>
-  }
+}
 
 class SearchContainer extends React.Component {
 
@@ -41,6 +41,7 @@ class SearchContainer extends React.Component {
         this.onInputChange = this.onInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.completeSubmit = this.completeSubmit.bind(this);
+
     }
 
     componentDidMount() {
@@ -61,6 +62,7 @@ class SearchContainer extends React.Component {
     completeSubmit() {
         let values = this.props.form.values;
         let syncErrors = this.props.form.syncErrors;
+        console.log(this.state.searchTxt)
         if (!syncErrors) {
             this.props.searchPerson(this.state.searchTxt);
         }
@@ -92,16 +94,20 @@ class SearchContainer extends React.Component {
                                         onInputChange={this.onInputChange}
                                     />
                                 </div>
-                                <button className="btn btn-primary" 
-                                onClick={(event) => {this.handleSubmit(event)}} >search</button>
+                                <button className="btn btn-primary"
+                                    onClick={(event) => { this.handleSubmit(event) }} >search</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div className="row results-content">
-                <div className="col">
-                <SearchContent res={this.props.searchRes}/>
+                <div className="error-placeholder text-center">
+                    {(this.props.form && this.props.form.syncErrors && this.props.form.anyTouched) ? (this.props.form.syncErrors.searchTxt) : ("")}
                 </div>
+                <div className="row results-content">
+                    <div className="col">
+
+                        <SearchContent res={this.props.searchRes} />
+                    </div>
                 </div>
             </div>
         )
@@ -124,7 +130,8 @@ SearchContainer.defaultProps = {
 function mapStateToProps(state) {
     return {
         db: state.db.db,
-        searchRes: state.search
+        searchRes: state.search,
+        form: state.form.search
     }
 }
 

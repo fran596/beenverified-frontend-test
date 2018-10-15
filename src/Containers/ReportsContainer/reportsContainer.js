@@ -3,25 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-/**Container dependencies*/
-import LoggedOutContainer from '../LoggedOutContainer/loggedOutContainer'
-import LoggedInContainer from '../LoggedInContainer/loggedInContainer'
 
 /**Actions to dispatch */
 import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
-
-/**CSS Styling */
-import '../../Styles/landing.css'
-import 'animate.css'
-
-function LandingContent(props) {
-    const isLoggedIn = props.isLoggedIn.currentUser;
-    if (isLoggedIn !== -1) {
-        let users = props.isLoggedIn.users
-        return <LoggedInContainer user={users[isLoggedIn]} />;
-    }
-    return <LoggedOutContainer />;
-}
 
 class ReportsContainer extends React.Component {
 

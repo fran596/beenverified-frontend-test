@@ -95,6 +95,7 @@ class LoggedOutContent extends React.Component {
                 placeholder=""
                 text="The name of the database you want to use for your CMS"
                 onInputChange={this.onInputChange}
+                onKeyPress={()=>{}}
               />
               <InputContainer
                 label="Password"
@@ -104,6 +105,7 @@ class LoggedOutContent extends React.Component {
                 placeholder=""
                 text="The name of the database you want to use for your CMS"
                 onInputChange={this.onInputChange}
+                onKeyPress={()=>{}}
               />
               <div className="d-flex justify-content-center">
                 <button

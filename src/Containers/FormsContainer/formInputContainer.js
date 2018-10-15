@@ -17,6 +17,7 @@ const FormInputContainer = (props) => (
                 options={{
                     defaultValue: props.value,
                     placeholder: props.placeholder,
+                    style: props.style,
                     onInputChange: props.onInputChange
                 }}
                 // className="form-control"

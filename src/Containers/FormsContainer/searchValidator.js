@@ -3,12 +3,12 @@ const searchValidator = values => {
     const errors = {};
   
     /*searchTxt validator */
-    if (!values.searchTxt) {
-      errors.searchTxt = 'An email is required';
+    if (values.searchTxt) {
+      if (values.searchTxt.match(regex) === null) {
+        errors.searchTxt = "A valid email address is required";
+      }
     }
-    else if (values.searchTxt.match(regex) === null) {
-      errors.searchTxt = "A valid email address is required";
-    }
+    
   
     return errors;
   };

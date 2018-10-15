@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import {CardBody} from 'reactstrap';
+import { CardBody } from 'reactstrap';
 
 /**Actions to dispatch */
 import { addReport } from '../../dbModel/Actions/Creators/actionCreators'
@@ -27,7 +27,7 @@ class SearchResult extends React.Component {
 
     completeSubmit() {
         this.props.addReport(this.props.res, this.props.db.currentUser);
-        window.alert('File will be saved');
+        // window.alert('File will be saved');
     }
 
     render() {
@@ -42,35 +42,16 @@ class SearchResult extends React.Component {
                             <div className="card" style={{ width: '100%' }} >
                                 <CardBody>
                                     <ul className="list-group list-group-flush">
-                                        <li className="list-group-item">
-                                            <span>
-                                                <SearchNamesRow imgs={this.props.res.images} names={this.props.res.names} />
-                                            </span>
-                                        </li>
-                                        <li className="list-group-item">
-                                            <span>
-                                                <SearchEmailsRow emails={this.props.res.emails}/>
-                                            </span>
-                                        </li>
-                                        <li className="list-group-item">
-                                            <span>
-                                                <SearchJobsRow jobs={this.props.res.jobs}/>
-                                            </span>
-                                        </li>
-                                        <li className="list-group-item">
-                                            <span>
-                                                <SearchSocialRow social={this.props.res.social}/>
-                                            </span>
-                                        </li>
+                                        <SearchNamesRow imgs={this.props.res.images} names={this.props.res.names} />
+                                        <SearchEmailsRow emails={this.props.res.emails} />
+                                        <SearchJobsRow jobs={this.props.res.jobs} />
+                                        <SearchSocialRow social={this.props.res.social} />
                                     </ul>
-                                    {/* <Button>Save report</Button> */}
-                                    <button className="btn btn-primary" 
-                                onClick={(event) => {this.handleSubmit(event)}} >Save report</button>
+                                    <button className="btn btn-primary"
+                                        onClick={(event) => { this.handleSubmit(event) }} >Save report</button>
                                 </CardBody>
                             </div>
                         )
-
-
                 }
             </div>
         );
