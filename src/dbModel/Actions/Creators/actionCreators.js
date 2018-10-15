@@ -169,6 +169,16 @@ export const deleteReport = (history, id) => {
         let db = JSON.parse(localStorage.getItem('db'));
         //If db found
         if (db) {
+            
+             //Log user activity
+             let date = new Date();
+             let message = `Deleted report of ${db.users[db.currentUser].reports[id].names[0].full} at ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+             db.users[db.currentUser].activity.splice(0,0,message);
+             //Limit activity to 5 items
+             while (db.users[db.currentUser].activity.length > 5) {
+                 db.users[db.currentUser].activity.pop();
+             }
+
             //Delete report in DB 
             db.users[db.currentUser].reports.splice(id, 1);
 
