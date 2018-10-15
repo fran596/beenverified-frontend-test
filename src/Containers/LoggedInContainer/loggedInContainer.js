@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Jumbotron, Button, ListGroup, ListGroupItem } from 'reactstrap';
+import { Jumbotron, ListGroup, ListGroupItem } from 'reactstrap';
 
 class LoggedInContainer extends React.Component {
 
