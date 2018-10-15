@@ -16,6 +16,11 @@ Install all the project dependencies
 ```
 npm install
 ```
+Start the project
+
+```
+npm start
+```
 
 ## Built With
 
