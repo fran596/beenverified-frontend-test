@@ -13,6 +13,7 @@ export const searchPerson = (email) => {
         fetch(`${API_URL}${email}`,{
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
+           mode: 'no-cors'
           
         })
           .then(response => response.json())
