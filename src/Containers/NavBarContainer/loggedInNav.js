@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
-    NavItem, NavLink, NavbarToggler, Nav, Collapse, Navbar, NavbarBrand,
+    NavItem, NavbarToggler, Nav, Collapse, Navbar, NavbarBrand,
     DropdownToggle, UncontrolledDropdown, DropdownMenu, DropdownItem
 } from 'reactstrap';
 

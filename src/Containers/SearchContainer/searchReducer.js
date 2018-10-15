@@ -2,7 +2,7 @@
 
 const DEFAULT_STATE = {
     report: {},
-    loading: true
+    loading: false
 }
 
 const search = (state = DEFAULT_STATE, action) => {
@@ -10,6 +10,7 @@ const search = (state = DEFAULT_STATE, action) => {
         case 'SEARCH_PERSON_REQUEST':
             return {
                 ...state,
+                loading: true
             }
         case 'SEARCH_PERSON_SUCCESS':
             return {

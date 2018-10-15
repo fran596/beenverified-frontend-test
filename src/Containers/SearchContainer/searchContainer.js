@@ -47,7 +47,7 @@ class SearchContainer extends React.Component {
         this.state = {
             user: undefined,
             searchTxt: '',
-            loading: false
+            loading: this.props.searchRes.loading
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,7 +60,6 @@ class SearchContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
         if (this.props.searchRes.loading !== prevProps.searchRes.loading) {
             this.setState({ loading: this.props.searchRes.loading })
         }
@@ -74,6 +73,7 @@ class SearchContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.setState({ loading: true })
         this.completeSubmit()
     }
 
@@ -82,7 +82,6 @@ class SearchContainer extends React.Component {
         let syncErrors = this.props.form.syncErrors;
         /*If no errors of validation */
         if (!syncErrors) {
-            this.setState({ loading: true })
             this.props.searchPerson(this.state.searchTxt);
         }
         else {
