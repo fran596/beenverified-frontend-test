@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux'
 
+import { css } from 'react-emotion';
+// First way to import
+import { FadeLoader } from 'react-spinners';
+
 /*Component Dependencies */
 import InputContainer from '../FormsContainer/formInputContainer';
 import SearchResult from './searchResult'
@@ -18,6 +22,13 @@ import '../../Styles/results.css'
 /**Actions to dispatch */
 import { getDB } from '../../dbModel/Actions/Creators/actionCreators'
 import { searchPerson } from '../SearchContainer/Actions/Creators/actionCreators'
+
+const override = css`
+    display: block;
+    margin: 1rem auto;
+    border-color: red;
+
+`;
 
 function SearchContent(props) {
     const res = props.res;
@@ -35,7 +46,8 @@ class SearchContainer extends React.Component {
 
         this.state = {
             user: undefined,
-            searchTxt: ''
+            searchTxt: '',
+            loading: false
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,6 +57,13 @@ class SearchContainer extends React.Component {
 
     componentDidMount() {
         this.props.getDB();
+    }
+
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.searchRes.loading !== prevProps.searchRes.loading) {
+            this.setState({ loading: this.props.searchRes.loading })
+        }
     }
 
     onInputChange(ev, name) {
@@ -63,6 +82,7 @@ class SearchContainer extends React.Component {
         let syncErrors = this.props.form.syncErrors;
         /*If no errors of validation */
         if (!syncErrors) {
+            this.setState({ loading: true })
             this.props.searchPerson(this.state.searchTxt);
         }
         else {
@@ -96,6 +116,18 @@ class SearchContainer extends React.Component {
                                 <button className="btn btn-primary"
                                     onClick={(event) => { this.handleSubmit(event) }} >search</button>
                             </form>
+                        </div>
+                        <div className='sweet-loading'>
+                            <FadeLoader
+                            className={override}
+                                sizeUnit={"px"}
+                                height={15}
+                                width={5}
+                                radius={2}
+                                margin={"2px"}
+                                color={'#4A90E2'}
+                                loading={this.state.loading}
+                            />
                         </div>
                     </div>
                 </div>

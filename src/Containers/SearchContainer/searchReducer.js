@@ -1,7 +1,8 @@
 // search reducer
 
 const DEFAULT_STATE = {
-    report: {}
+    report: {},
+    loading: true
 }
 
 const search = (state = DEFAULT_STATE, action) => {
@@ -13,12 +14,14 @@ const search = (state = DEFAULT_STATE, action) => {
         case 'SEARCH_PERSON_SUCCESS':
             return {
                 ...state,
-                report: action.report
+                report: action.report,
+                loading: false
             }
         case 'SEARCH_PERSON_FAILURE':
             return {
                 ...state,
-                error: action.error
+                error: action.error,
+                loading: false
             }
         default:
             return state

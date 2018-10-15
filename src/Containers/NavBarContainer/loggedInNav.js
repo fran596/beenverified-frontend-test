@@ -1,7 +1,7 @@
 /**Nav bar component for logged in users */
 
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -48,16 +48,13 @@ class LoggedInNav extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/" active={window.location.pathname === '/'}>Home</NavLink>
+                            <Link className={(window.location.pathname === '/') ? "nav-link active" : "nav-link"} to="/">Home</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/search" active={window.location.pathname === '/search'}>New Search</NavLink>
+                            <Link className={(window.location.pathname === '/search') ? "nav-link active" : "nav-link"} to="/search">New Search</Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/reports" 
-                            active={window.location.pathname === '/reports' || window.location.pathname === '/reports/view' }>
-                            My reports
-                            </NavLink>
+                            <Link className={(window.location.pathname === '/reports' || window.location.pathname === '/reports/view') ? "nav-link active" : "nav-link"} to="/reports">My reports</Link>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

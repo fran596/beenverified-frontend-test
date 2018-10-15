@@ -3,6 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Jumbotron, ListGroup, ListGroupItem } from 'reactstrap';
 
 class LoggedInContainer extends React.Component {
@@ -33,7 +34,7 @@ class LoggedInContainer extends React.Component {
             <hr className="my-2" />
             <p>Start searching today and find out all the information available of the one you look for.</p>
             <p className="lead">
-            <a class="btn btn-primary" href="/search" role="button">Start searching</a>
+            <Link className="btn btn-primary" to="/search">Start searching</Link>
             </p>
           </Jumbotron>
         </div>
