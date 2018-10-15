@@ -46,13 +46,16 @@ class LoggedInNav extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">Home</NavLink>
+                            <NavLink href="/" active={window.location.pathname === '/'}>Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/search">New Search</NavLink>
+                            <NavLink href="/search" active={window.location.pathname === '/search'}>New Search</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/reports">My reports</NavLink>
+                            <NavLink href="/reports" 
+                            active={window.location.pathname === '/reports' || window.location.pathname === '/reports/view' }>
+                            My reports
+                            </NavLink>
                         </NavItem>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>

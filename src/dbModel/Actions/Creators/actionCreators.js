@@ -9,6 +9,20 @@ export const addUser = (user) => {
         if (user) {
             console.log(user)
             let db = JSON.parse(localStorage.getItem('db'));
+            if (!db) {
+                    //If no DB create a new one
+                    db = {
+                        users: [],
+                        currentUser: -1
+                    };
+                    //Save DB to local storage
+                    localStorage.setItem('db', JSON.stringify(db));
+                    dispatch({
+                        type: Action.GET_DB_FAILURE,
+                        error: 'No database found. A new database will be created',
+                        newDB: db
+                    })
+            }
             db.users.push(user);
             db.currentUser = user.index;
             //Save DB
@@ -128,7 +142,7 @@ export const addReport = (report, userID) => {
             })
         }
         else {
-            
+
             dispatch({
                 type: Action.ADD_REPORT_FAILURE,
                 error: "No database found. The report couldn't be added.",
@@ -147,8 +161,8 @@ export const deleteReport = (history, id) => {
         //If db found
         if (db) {
             //Delete report in DB 
-            db.users[db.currentUser].reports.splice(id,1);
-    
+            db.users[db.currentUser].reports.splice(id, 1);
+
             //Save changes in DB
             localStorage.setItem('db', JSON.stringify(db));
             dispatch({
@@ -159,10 +173,10 @@ export const deleteReport = (history, id) => {
                 pathname: '/reports',
                 search: '',
                 state: {}
-              })
+            })
         }
         else {
-            
+
             dispatch({
                 type: Action.DELETE_REPORT_FAILURE,
                 error: "No database found. The report couldn't be deleted.",
